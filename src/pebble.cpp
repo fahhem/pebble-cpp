@@ -44,3 +44,11 @@ CPPTextLayer::CPPTextLayer(int16_t x, int16_t y, int16_t w, int16_t h)
   layer_owned_ = true;
 }
 
+CPPBitmapLayer::CPPBitmapLayer(int16_t x, int16_t y, int16_t w, int16_t h, uint32_t resource_id)
+  : CPPLayer() {
+    bitmap_layer_ = bitmap_layer_create((GRect) { .origin = { x, y }, .size = { w, h } });
+    image_bitmap_ = gbitmap_create_with_resource(resource_id);
+    layer_ = bitmap_layer_get_layer(bitmap_layer_);
+    layer_owned_ = true;
+  }
+
