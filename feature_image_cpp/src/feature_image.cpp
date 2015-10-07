@@ -21,7 +21,6 @@ class PebbleApp {
   
  private:
   std::unique_ptr<CPPBitmapLayer> bitmap_layer;
-  std::unique_ptr<GBitmap> bitmap_image;
 };
 
 extern "C" int main(void) {
