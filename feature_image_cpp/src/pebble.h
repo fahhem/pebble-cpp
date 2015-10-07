@@ -158,6 +158,8 @@ class CPPTextLayer : public CPPLayer {
 
 class CPPBitmapLayer : public CPPLayer {
   public:
+    GBitmap *image_bitmap_;
+    
     explicit CPPBitmapLayer(int16_t x, int16_t y, int16_t w, int16_t h, uint32_t resource_id);
     
     #define BITMAP_LAYER_PROXY_METHOD(R, M) PROXY_METHOD(R, M, bitmap_layer_, bitmap_layer_)
@@ -179,7 +181,6 @@ class CPPBitmapLayer : public CPPLayer {
 
   private:
     BitmapLayer *bitmap_layer_;
-    GBitmapLayer *image_bitmap_;
 };
 
 template<typename PebbleAppT>

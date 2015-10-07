@@ -1,4 +1,4 @@
-#include "pebble.h"
+  #include "pebble.h"
 
 class PebbleApp {
  public:
@@ -6,10 +6,13 @@ class PebbleApp {
     CPPWindow root_window(window);
 
     CPPLayer window_layer(root_window.get_root_layer());
-    //auto bounds = window_layer.get_bounds();
+    auto bounds = window_layer.get_bounds();
 
-    //s_image_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_NO_LITTER);
-
+    bitmap_layer.reset(new CPPBitmapLayer(0, 0, bounds.size.w, bounds.size.h,
+                                          RESOURCE_ID_IMAGE_NO_LITTER));
+    bitmap_layer->set_bitmap(bitmap_layer->image_bitmap_);
+    bitmap_layer->set_alignment(GAlignCenter);
+    window_layer.add_child(*bitmap_layer);
   }
 
   void window_unload(Window *window) {
@@ -18,6 +21,7 @@ class PebbleApp {
   
  private:
   std::unique_ptr<CPPBitmapLayer> bitmap_layer;
+  std::unique_ptr<GBitmap> bitmap_image;
 };
 
 extern "C" int main(void) {
