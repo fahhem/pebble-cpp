@@ -156,6 +156,33 @@ class CPPTextLayer : public CPPLayer {
   TextLayer *text_layer_;
 };
 
+class CPPBitmapLayer : public CPPLayer {
+  public:
+    GBitmap *image_bitmap_;
+    
+    explicit CPPBitmapLayer(int16_t x, int16_t y, int16_t w, int16_t h, uint32_t resource_id);
+    
+    #define BITMAP_LAYER_PROXY_METHOD(R, M) PROXY_METHOD(R, M, bitmap_layer_, bitmap_layer_)
+
+    // const GBitmap* get_bitmap()
+    BITMAP_LAYER_PROXY_METHOD(const GBitmap*, get_bitmap);
+
+    // void set_bitmap(const GBitmap*)
+    BITMAP_LAYER_PROXY_METHOD(void, set_bitmap)
+
+    // void set_alignment(GAlign)
+    BITMAP_LAYER_PROXY_METHOD(void, set_alignment)
+
+    // void set_background_color(GColor)
+    BITMAP_LAYER_PROXY_METHOD(void, set_background_color)
+
+    //void set_compositing_mode(GCompOp)
+    BITMAP_LAYER_PROXY_METHOD(void, set_compositing_mode)
+
+  private:
+    BitmapLayer *bitmap_layer_;
+};
+
 template<typename PebbleAppT>
 class App {
  public:
